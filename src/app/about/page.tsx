@@ -3,8 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import SosModal from '../../components/SosModal';
+
 export default function AboutPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSosOpen, setIsSosOpen] = useState(false);
 
   const team = [
     { name: 'AI Research Team', role: 'Computer Vision & ML', icon: '🧠' },
@@ -26,48 +30,8 @@ export default function AboutPage() {
       <div className="absolute top-0 left-1/3 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/15 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute top-[600px] -right-[100px] w-[500px] h-[500px] bg-pink-600/10 blur-[150px] pointer-events-none rounded-full" />
 
-      {/* Header */}
-      <nav className="bg-[#090D16]/70 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 transition-all">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-11 h-11 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25 group-hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
-                <span className="text-2xl">🗺️</span>
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-purple-300 transition-colors">
-                Road Safety <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">AI</span>
-              </span>
-            </Link>
-
-            <div className="hidden md:flex items-center gap-8">
-              <div className="flex items-center gap-6 text-sm font-semibold text-slate-300">
-                <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
-                <Link href="/map" className="hover:text-purple-400 transition-colors">Map</Link>
-                <Link href="/statistics" className="hover:text-purple-400 transition-colors">Statistics</Link>
-                <Link href="/about" className="text-purple-400">About</Link>
-              </div>
-            </div>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-colors"
-            >
-              <span className="text-lg">{mobileMenuOpen ? '✕' : '☰'}</span>
-            </button>
-          </div>
-
-          {mobileMenuOpen && (
-            <div className="md:hidden py-6 border-t border-white/10 animate-in slide-in-from-top duration-200">
-              <div className="flex flex-col gap-4 text-base font-medium">
-                <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
-                <Link href="/map" className="hover:text-purple-400 transition-colors">Map</Link>
-                <Link href="/statistics" className="hover:text-purple-400 transition-colors">Statistics</Link>
-                <Link href="/about" className="text-purple-400">About</Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      {/* Universal Navbar */}
+      <Navbar onOpenSos={() => setIsSosOpen(true)} />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
@@ -166,7 +130,7 @@ export default function AboutPage() {
       {/* Floating WhatsApp Button */}
       <div className="fixed bottom-6 right-6 z-40">
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/998901234567"
           target="_blank"
           rel="noopener noreferrer"
           className="w-14 h-14 bg-gradient-to-tr from-purple-600 via-pink-500 to-rose-400 text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/40 hover:scale-110 active:scale-95 transition-all ring-2 ring-white/20"
@@ -174,6 +138,12 @@ export default function AboutPage() {
           <span className="text-2xl">💬</span>
         </a>
       </div>
+
+      {/* Universal Footer */}
+      <Footer />
+
+      {/* SOS Modal */}
+      <SosModal isOpen={isSosOpen} onClose={() => setIsSosOpen(false)} />
     </main>
   );
 }

@@ -5,12 +5,16 @@ import dynamic from 'next/dynamic';
 import type { Issue } from '../../components/Map';
 import Link from 'next/link';
 
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import SosModal from '../../components/SosModal';
+
 const Map = dynamic(() => import('../../components/Map'), { ssr: false });
 
 export default function MapPage() {
   const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null);
   const [showReportModal, setShowReportModal] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSosOpen, setIsSosOpen] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [showCamera, setShowCamera] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
@@ -24,7 +28,6 @@ export default function MapPage() {
 
     try {
       let stream: MediaStream;
-      // Avval orqa kameraga harakat qilamiz, o'xshamasa har qanday qulay kamerani olamiz
       try {
         stream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } },
@@ -39,7 +42,6 @@ export default function MapPage() {
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        // Chromium brauzerlarida avtomatik o'ynatishni ta'minlash uchun
         videoRef.current.onloadedmetadata = () => {
           videoRef.current?.play().catch((e) => console.error('Play error:', e));
         };
@@ -104,47 +106,7 @@ export default function MapPage() {
       <div className="absolute top-[600px] -right-[100px] w-[500px] h-[500px] bg-blue-600/10 blur-[150px] pointer-events-none rounded-full" />
 
       {/* Navigation Header */}
-      <nav className="bg-[#090D16]/70 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 transition-all">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-11 h-11 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25 group-hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
-                <span className="text-2xl">🗺️</span>
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-purple-300 transition-colors">
-                Road Safety <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">AI</span>
-              </span>
-            </Link>
-
-            <div className="hidden md:flex items-center gap-8">
-              <div className="flex items-center gap-6 text-sm font-semibold text-slate-300">
-                <Link href="/" className="hover:text-purple-400 transition-colors">Bosh sahifa</Link>
-                <Link href="/map" className="text-purple-400">Xarita</Link>
-                <Link href="/statistics" className="hover:text-purple-400 transition-colors">Statistika</Link>
-                <Link href="/about" className="hover:text-purple-400 transition-colors">Loyiha haqida</Link>
-              </div>
-            </div>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-colors"
-            >
-              <span className="text-lg">{mobileMenuOpen ? '✕' : '☰'}</span>
-            </button>
-          </div>
-
-          {mobileMenuOpen && (
-            <div className="md:hidden py-6 border-t border-white/10 animate-in slide-in-from-top duration-200">
-              <div className="flex flex-col gap-4 text-base font-medium">
-                <Link href="/" className="hover:text-purple-400 transition-colors">Bosh sahifa</Link>
-                <Link href="/map" className="text-purple-400">Xarita</Link>
-                <Link href="/statistics" className="hover:text-purple-400 transition-colors">Statistika</Link>
-                <Link href="/about" className="hover:text-purple-400 transition-colors">Loyiha haqida</Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <Navbar onOpenSos={() => setIsSosOpen(true)} />
 
       {/* Main Map Container */}
       <div className="max-w-7xl mx-auto px-6 py-12 relative z-10">
@@ -367,6 +329,12 @@ export default function MapPage() {
           </div>
         </div>
       )}
+
+      {/* Universal Footer */}
+      <Footer />
+
+      {/* SOS Modal */}
+      <SosModal isOpen={isSosOpen} onClose={() => setIsSosOpen(false)} />
     </main>
   );
 }
