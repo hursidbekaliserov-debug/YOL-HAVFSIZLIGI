@@ -65,8 +65,8 @@ function MapUpdater({ center, zoom }: { center: [number, number]; zoom: number }
   return null;
 }
 
-export default function Map({ selectedIssue, setSelectedIssue }: { 
-  selectedIssue: Issue | null, 
+export default function Map({ setSelectedIssue }: { 
+  selectedIssue?: Issue | null, 
   setSelectedIssue: (issue: Issue | null) => void 
 }) {
   const [mounted, setMounted] = useState(false);
@@ -93,6 +93,7 @@ export default function Map({ selectedIssue, setSelectedIssue }: {
   const [zoomLevel] = useState<number>(6);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -133,23 +134,23 @@ export default function Map({ selectedIssue, setSelectedIssue }: {
           }}
         >
           <Popup>
-            <div className="p-3 min-w-[220px] bg-slate-950 text-white rounded-xl">
-              <div className="text-[10px] font-bold tracking-wider text-purple-400 uppercase mb-1">
+            <div className="p-3.5 min-w-[220px] bg-white text-[#111827] rounded-2xl border border-gray-200 shadow-xl font-sans">
+              <div className="text-[10px] font-black tracking-wider text-[#0E9F79] uppercase mb-1">
                 📍 {issue.region || 'Viloyat'}
               </div>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xl">{issue.status === 'not_fixed' ? '🚨' : issue.status === 'in_progress' ? '⚠️' : '✅'}</span>
-                <h3 className="font-bold text-xs text-slate-100 leading-snug">{issue.description}</h3>
+                <h3 className="font-bold text-xs text-[#111827] leading-snug">{issue.description}</h3>
               </div>
-              <p className="text-[11px] text-gray-300 mb-2">{statusLabels[issue.status]}</p>
+              <p className="text-[11px] font-semibold text-gray-500 mb-2">{statusLabels[issue.status]}</p>
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[11px] text-gray-400 flex items-center gap-1">
+                <p className="text-[11px] text-gray-500 flex items-center gap-1">
                   <span>👍</span>
-                  <span>{issue.votes} ta ovoz</span>
+                  <span className="font-bold text-[#111827]">{issue.votes} ta ovoz</span>
                 </p>
               </div>
               <button 
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs px-3 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all active:scale-95"
+                className="w-full bg-[#16C79A] hover:bg-[#12a37d] text-white text-xs px-3 py-2 rounded-full font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95"
                 onClick={() => {
                   issue.votes += 1;
                   setSelectedIssue({...issue});

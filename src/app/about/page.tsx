@@ -11,79 +11,103 @@ export default function AboutPage() {
   const [isSosOpen, setIsSosOpen] = useState(false);
 
   const team = [
-    { name: 'AI Research Team', role: 'Computer Vision & ML', icon: '🧠' },
-    { name: 'Urban Planning', role: 'Infrastructure Analysis', icon: '🏙️' },
-    { name: 'Data Science', role: 'Geospatial Analytics', icon: '📊' },
-    { name: 'Community', role: 'User Experience', icon: '👥' },
+    { name: 'AI & Kompyuter Ko\'rishi', role: 'Computer Vision & Deep Learning', icon: '🧠' },
+    { name: 'Shahar Infratuzilmasi', role: 'Urban GIS & Traffic Engineering', icon: '🏙️' },
+    { name: 'Geofazoviy Tahlil', role: 'Spatial Analytics & Big Data', icon: '📊' },
+    { name: 'Jamoatchilik Nazorati', role: 'Civic Engagement & UX', icon: '👥' },
   ];
 
   const values = [
-    { title: 'Innovation', desc: 'Cutting-edge AI technology for road safety', icon: '🚀' },
-    { title: 'Community', desc: 'Crowdsourced data collection and validation', icon: '🤝' },
-    { title: 'Transparency', desc: 'Open data and real-time problem tracking', icon: '🔍' },
-    { title: 'Impact', desc: 'Measurable improvements in urban infrastructure', icon: '💡' },
+    { title: 'Innovatsiya', desc: 'Yo\'l xavfsizligida ilg\'or AI neyron tarmoqlari va kompyuter ko\'rishi.', icon: '🚀' },
+    { title: 'Jamoatchilik', desc: 'Fuqarolar orqali ochiq ma\'lumotlar to\'plash va tezkor monitoring.', icon: '🤝' },
+    { title: 'Shaffoflik', desc: 'Har bir muammoning ochiq yechimi va holatini real vaqtda kuzatish.', icon: '🔍' },
+    { title: 'Natija va Ta\'sir', desc: 'O\'zbekiston yo\'llarida avariyalarni oldini olish va infratuzilmani yangilash.', icon: '💡' },
   ];
 
   return (
-    <main className="min-h-screen bg-[#090D16] text-slate-100 relative overflow-hidden font-sans selection:bg-purple-500 selection:text-white">
-      {/* Background Glows */}
-      <div className="absolute top-0 left-1/3 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/15 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute top-[600px] -right-[100px] w-[500px] h-[500px] bg-pink-600/10 blur-[150px] pointer-events-none rounded-full" />
-
-      {/* Universal Navbar */}
+    <main className="min-h-screen bg-[#F8F9FA] text-[#1A1D20] font-sans selection:bg-[#16C79A] selection:text-white relative">
+      {/* Universal Sticky Navbar */}
       <Navbar onOpenSos={() => setIsSosOpen(true)} />
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-300 text-xs font-semibold uppercase tracking-wider mb-8">
-            ✨ About Our Mission
+      {/* Hero Section */}
+      <section className="pt-16 pb-20 bg-gradient-to-b from-white to-[#F8F9FA] border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-teal-50 border border-teal-200 rounded-full text-[#0E9F79] text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#16C79A] animate-pulse"></span>
+            <span>● BIZNING MISSIYAMIZ VA MAQSADIMIZ</span>
           </div>
-          <h1 className="text-5xl sm:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mx-auto mb-6">
-            Transforming Urban <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400">Infrastructure</span>
+          <h1 className="text-4xl sm:text-6xl font-black text-[#111827] tracking-tight leading-[1.12] max-w-4xl mx-auto mb-6">
+            O&apos;zbekiston Yo&apos;llarini <span className="text-[#16C79A]">Sun&apos;iy Intellekt Bilan</span> Yangilash
           </h1>
-          <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            We're revolutionizing road safety through AI-powered detection, crowdsourced data, and real-time analytics to create smarter, safer cities.
+          <p className="text-gray-600 text-base sm:text-xl max-w-3xl mx-auto mb-6 leading-relaxed">
+            Biz sun&apos;iy intellekt, fuqarolik nazorati va zamonaviy tahliliy vositalar orqali yo&apos;l infratuzilmasi muammolarini erta aniqlash va bartaraf etishning milliy ekotizimini barpo etmoqdamiz.
           </p>
         </div>
+      </section>
 
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
         {/* Mission Section */}
-        <div className="bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-white/10 p-8 md:p-12 mb-16 shadow-2xl shadow-black/40">
+        <div className="bg-white rounded-3xl border border-gray-200/90 p-8 md:p-12 mb-16 shadow-xl shadow-gray-200/50">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Our Mission</h2>
-              <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                Road Safety AI was founded with a simple yet powerful vision: to leverage artificial intelligence and community engagement to identify and resolve road infrastructure problems before they cause accidents.
+              <div className="text-xs font-bold uppercase tracking-wider text-[#0E9F79] mb-2">
+                ● RIVOJLANISH STRATEGIYASI
+              </div>
+              <h2 className="text-3xl font-black text-[#111827] mb-6 tracking-tight">
+                Bizning Missiyamiz
+              </h2>
+              <p className="text-gray-700 text-base leading-relaxed mb-6">
+                Road Safety AI ekotizimi O&apos;zbekiston Respublikasida yo&apos;l-transport hodisalarini kamaytirish, xavfli nuqsonlarni avtomatik aniqlash va mas&apos;ul idoralarga zudlik bilan yo&apos;naltirish uchun ishlab chiqilgan.
               </p>
-              <p className="text-slate-400 leading-relaxed">
-                Our platform combines cutting-edge computer vision, geospatial analytics, and crowdsourced reporting to create a comprehensive ecosystem for urban safety monitoring. By empowering citizens and providing municipalities with actionable insights, we're making cities safer, one road at a time.
+              <p className="text-gray-600 leading-relaxed text-sm">
+                Ilg&apos;or kompyuter ko&apos;rishi algoritmlari orqali fotosuratlar va videokuzatuv oqimlari real vaqtda qayta ishlanib, geolokatsiyali ochiq ma&apos;lumotlar bazasiga kiritiladi.
               </p>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-2xl p-8 border border-purple-500/20">
-                <div className="text-6xl mb-4">🎯</div>
-                <div className="text-2xl font-bold text-white mb-2">10K+</div>
-                <div className="text-slate-400">Issues Resolved</div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 text-center">
+                <div className="text-4xl mb-2">🎯</div>
+                <div className="text-3xl font-black text-[#16C79A] mb-1">14,800+</div>
+                <div className="text-xs font-bold text-gray-500 uppercase">Hal etilgan nuqsonlar</div>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 text-center">
+                <div className="text-4xl mb-2">⚡</div>
+                <div className="text-3xl font-black text-[#111827] mb-1">98.4%</div>
+                <div className="text-xs font-bold text-gray-500 uppercase">AI Aniqligi</div>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 text-center">
+                <div className="text-4xl mb-2">📍</div>
+                <div className="text-3xl font-black text-[#111827] mb-1">14 ta</div>
+                <div className="text-xs font-bold text-gray-500 uppercase">Hududlar qamrovi</div>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 text-center">
+                <div className="text-4xl mb-2">👥</div>
+                <div className="text-3xl font-black text-[#16C79A] mb-1">24/7</div>
+                <div className="text-xs font-bold text-gray-500 uppercase">Doimiy nazorat</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Team Section */}
+        {/* Expertise Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 tracking-tight text-center">Our Expertise</h2>
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 border border-teal-200 rounded-full text-[#0E9F79] text-xs font-bold uppercase tracking-wider mb-2">
+              ● JAMOAMIZ VA MUTAXASSISLAR
+            </div>
+            <h2 className="text-3xl font-black text-[#111827] tracking-tight">Yo&apos;nalishlar va Ekspertiza</h2>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member, index) => (
               <div
                 key={index}
-                className="p-6 rounded-2xl bg-slate-900/40 border border-white/10 backdrop-blur-xl hover:border-purple-500/30 transition-all hover:-translate-y-1 group"
+                className="p-6 rounded-2xl bg-white border border-gray-200/90 shadow-md hover:shadow-xl hover:border-[#16C79A] transition-all hover:-translate-y-1 group"
               >
-                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-white/5 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-gray-200 group-hover:scale-110 transition-transform">
                   {member.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-tight">{member.name}</h3>
-                <p className="text-slate-400 text-sm">{member.role}</p>
+                <h3 className="text-base font-bold text-[#111827] mb-1 tracking-tight">{member.name}</h3>
+                <p className="text-gray-500 text-xs">{member.role}</p>
               </div>
             ))}
           </div>
@@ -91,52 +115,51 @@ export default function AboutPage() {
 
         {/* Values Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 tracking-tight text-center">Our Values</h2>
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 border border-teal-200 rounded-full text-[#0E9F79] text-xs font-bold uppercase tracking-wider mb-2">
+              ● TAMOYILLARIMIZ
+            </div>
+            <h2 className="text-3xl font-black text-[#111827] tracking-tight">Bizning Qadriyatlarimiz</h2>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <div
                 key={index}
-                className="p-6 rounded-2xl bg-slate-900/40 border border-white/10 backdrop-blur-xl hover:border-purple-500/30 transition-all hover:-translate-y-1 group"
+                className="p-6 rounded-2xl bg-white border border-gray-200/90 shadow-md hover:shadow-xl hover:border-[#16C79A] transition-all hover:-translate-y-1 group"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-teal-200 group-hover:scale-110 transition-transform">
                   {value.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-tight">{value.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{value.desc}</p>
+                <h3 className="text-base font-bold text-[#111827] mb-2 tracking-tight">{value.title}</h3>
+                <p className="text-gray-600 text-xs leading-relaxed">{value.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Contact Section */}
-        <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-3xl border border-purple-500/20 p-8 md:p-12 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">Join Our Mission</h2>
-          <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
-            Together, we can create safer roads and smarter cities. Join our community of innovators, urban planners, and safety advocates.
+        {/* Corporate CTA Banner */}
+        <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-r from-[#0E9F79] via-[#16C79A] to-[#00B090] text-white text-center shadow-xl shadow-teal-500/20">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
+            Ekotizimimizga Qo&apos;shiling
+          </h2>
+          <p className="text-teal-50 mb-8 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            Biz bilan hamkorlik qiling va O&apos;zbekiston yo&apos;llarini birgalikda xavfsizroq va qulayroq qilaylik.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://wa.me/1234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-purple-500/25 active:scale-95"
+            <Link
+              href="/map"
+              className="bg-white text-[#0E9F79] hover:bg-gray-100 px-8 py-3.5 rounded-full font-bold transition-all shadow-lg active:scale-95 text-xs uppercase tracking-wider"
             >
-              Contact Us
+              Interaktiv Xarita →
+            </Link>
+            <a
+              href="tel:102"
+              className="bg-transparent hover:bg-white/10 text-white px-8 py-3.5 rounded-full font-bold transition-all border-2 border-white text-xs uppercase tracking-wider"
+            >
+              📞 102 / Qaynoq Liniya
             </a>
           </div>
         </div>
-      </div>
-
-      {/* Floating WhatsApp Button */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <a
-          href="https://wa.me/998901234567"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-14 h-14 bg-gradient-to-tr from-purple-600 via-pink-500 to-rose-400 text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/40 hover:scale-110 active:scale-95 transition-all ring-2 ring-white/20"
-        >
-          <span className="text-2xl">💬</span>
-        </a>
       </div>
 
       {/* Universal Footer */}

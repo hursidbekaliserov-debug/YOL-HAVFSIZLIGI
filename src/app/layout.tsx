@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../context/LanguageContext";
+import TelegramChatWidget from "../components/TelegramChatWidget";
 
 export const metadata: Metadata = {
   title: "Road Safety AI — Yoʻl Xavfsizligi Ekotizimi",
@@ -14,9 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uz">
-      <body className="antialiased bg-[#090D16] text-slate-100">
+      <body className="antialiased bg-[#F8F9FA] text-[#1A1D20] font-sans selection:bg-[#16C79A] selection:text-white">
         <LanguageProvider>
           {children}
+          <TelegramChatWidget />
         </LanguageProvider>
       </body>
     </html>

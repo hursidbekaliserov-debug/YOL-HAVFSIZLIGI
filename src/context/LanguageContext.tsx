@@ -10,9 +10,15 @@ export interface Translations {
   nav_map: string;
   nav_stats: string;
   nav_about: string;
+  nav_news: string;
   nav_sos: string;
   nav_report: string;
   sub_brand: string;
+
+  // News portal
+  news_badge: string;
+  news_title: string;
+  news_subtitle: string;
 
   // Hero
   hero_badge_ai: string;
@@ -65,6 +71,8 @@ export interface Translations {
   // Quiz
   quiz_badge: string;
   quiz_title: string;
+  quiz_subtitle: string;
+  quiz_counter: string;
   quiz_q_label: string;
   quiz_next: string;
   quiz_finish: string;
@@ -116,9 +124,14 @@ export const translations: Record<Language, Translations> = {
     nav_map: 'Interaktiv Xarita',
     nav_stats: 'Statistika & Tahlil',
     nav_about: 'Loyiha haqida',
+    nav_news: 'Yangiliklar',
     nav_sos: 'SOS 102',
     nav_report: '+ Murojaat',
     sub_brand: 'O\'zbekiston Yo\'l Xavfsizligi',
+
+    news_badge: 'Tezkor Xabarlar & Yangiliklar',
+    news_title: 'Yo\'l Xavfsizligi Yangiliklari',
+    news_subtitle: 'Respublika yo\'llaridagi so\'nggi o\'zgarishlar, ta\'mirlash ishlari va qoidalar',
 
     hero_badge_ai: 'Sun\'iy Intellektli Monitoring',
     hero_badge_fixed: '🟢 14,820+ Muammo Bartaraf Etildi',
@@ -165,6 +178,8 @@ export const translations: Record<Language, Translations> = {
 
     quiz_badge: 'Bilimingizni sinang',
     quiz_title: 'Yo\'l Harakati Xavfsizligi Viktorinasi',
+    quiz_subtitle: 'Yo\'l harakati qoidalarini qay darajada bilasiz? O\'zingizni sinab ko\'ring.',
+    quiz_counter: 'savol',
     quiz_q_label: 'Savol',
     quiz_next: 'Keyingi savol →',
     quiz_finish: 'Natijani ko\'rish 🏆',
@@ -208,9 +223,14 @@ export const translations: Record<Language, Translations> = {
     nav_map: 'Интерактивная Карта',
     nav_stats: 'Статистика & Анализ',
     nav_about: 'О проекте',
+    nav_news: 'Новости',
     nav_sos: 'SOS 102',
     nav_report: '+ Сообщить',
     sub_brand: 'Безопасность Дорог Узбекистана',
+
+    news_badge: 'Срочные Новости & Оповещения',
+    news_title: 'Новости Безопасности Дорог',
+    news_subtitle: 'Последние изменения, дорожные работы и правила движения в Узбекистане',
 
     hero_badge_ai: 'Мониторинг на основе ИИ',
     hero_badge_fixed: '🟢 14,820+ Проблем Устранено',
@@ -257,6 +277,8 @@ export const translations: Record<Language, Translations> = {
 
     quiz_badge: 'Проверьте знания',
     quiz_title: 'Викторина по Безопасности Дорожного Движения',
+    quiz_subtitle: 'Насколько хорошо вы знаете ПДД? Проверьте свои знания.',
+    quiz_counter: 'вопрос',
     quiz_q_label: 'Вопрос',
     quiz_next: 'Следующий вопрос →',
     quiz_finish: 'Посмотреть результат 🏆',
@@ -300,9 +322,14 @@ export const translations: Record<Language, Translations> = {
     nav_map: 'Interactive Map',
     nav_stats: 'Statistics & Analytics',
     nav_about: 'About Project',
+    nav_news: 'News & Alerts',
     nav_sos: 'SOS 102',
     nav_report: '+ Report',
     sub_brand: 'Uzbekistan Road Safety',
+
+    news_badge: 'Urgent Alerts & News',
+    news_title: 'Road Safety News & Updates',
+    news_subtitle: 'Latest traffic regulations, roadwork closures, and weather warnings in Uzbekistan',
 
     hero_badge_ai: 'AI-Powered Safety Monitoring',
     hero_badge_fixed: '🟢 14,820+ Hazards Resolved',
@@ -349,6 +376,8 @@ export const translations: Record<Language, Translations> = {
 
     quiz_badge: 'Test Your Knowledge',
     quiz_title: 'Road Safety Knowledge Quiz',
+    quiz_subtitle: 'How well do you know road safety rules? Test your knowledge.',
+    quiz_counter: 'question',
     quiz_q_label: 'Question',
     quiz_next: 'Next Question →',
     quiz_finish: 'View Results 🏆',
@@ -407,6 +436,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     const saved = localStorage.getItem('app_language') as Language;
     if (saved && (saved === 'uz' || saved === 'ru' || saved === 'en')) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLanguageState(saved);
     }
   }, []);

@@ -21,35 +21,30 @@ export default function SosModal({ isOpen, onClose }: SosModalProps) {
         number: '102',
         desc: 'Yo\'l-transport hodisalari va xavfli qoidabuzarliklar',
         icon: '👮‍♂️',
-        color: 'from-blue-600 to-indigo-600',
       },
       {
         title: 'Tez tibbiy yordam',
         number: '103',
         desc: 'Jarohatlanganlarga shoshilinch tibbiy yordam ko\'rsatish',
         icon: '🚑',
-        color: 'from-rose-600 to-red-600',
       },
       {
         title: 'Favqulodda vaziyatlar (FVV)',
         number: '101',
         desc: 'Yong\'in, bloklanish va qutqaruv operatsiyalari',
         icon: '🚒',
-        color: 'from-amber-600 to-orange-600',
       },
       {
         title: 'Respublika Avto-Evakuator',
         number: '+998 71 200 00 00',
         desc: 'Nosoz transport vositasini xavfsiz evakuatsiya qilish',
         icon: '🚛',
-        color: 'from-purple-600 to-pink-600',
       },
       {
         title: 'Yo\'l xo\'jaligi ishonch telefoni',
         number: '1299',
         desc: 'Xavfli chuqurchalar, to\'siqlar va yo\'l o\'pirilishlari',
         icon: '🚧',
-        color: 'from-teal-600 to-emerald-600',
       },
     ],
     ru: [
@@ -58,167 +53,133 @@ export default function SosModal({ isOpen, onClose }: SosModalProps) {
         number: '102',
         desc: 'Дорожно-транспортные происшествия и опасные нарушения',
         icon: '👮‍♂️',
-        color: 'from-blue-600 to-indigo-600',
       },
       {
         title: 'Скорая медицинская помощь',
         number: '103',
         desc: 'Экстренная медицинская помощь пострадавшим',
         icon: '🚑',
-        color: 'from-rose-600 to-red-600',
       },
       {
         title: 'Служба спасения (МЧС)',
         number: '101',
-        desc: 'Пожары, блокировка движения и спасательные работы',
+        desc: 'Пожары, завалы и спасательные операции на трассах',
         icon: '🚒',
-        color: 'from-amber-600 to-orange-600',
       },
       {
-        title: 'Республиканский Авто-Эвакуатор',
+        title: 'Городская служба эвакуации',
         number: '+998 71 200 00 00',
-        desc: 'Безопасная эвакуация неисправного транспорта',
+        desc: 'Круглосуточная буксировка и транспортировка авто',
         icon: '🚛',
-        color: 'from-purple-600 to-pink-600',
       },
       {
-        title: 'Горячая линия дорожного хозяйства',
+        title: 'Горячая линия дорожных служб',
         number: '1299',
-        desc: 'Опасные ямы, препятствия и повреждения полотна',
+        desc: 'Опасные ямы, обвалы асфальта и повреждения полотна',
         icon: '🚧',
-        color: 'from-teal-600 to-emerald-600',
       },
     ],
     en: [
       {
-        title: 'Traffic Patrol Police',
+        title: 'Traffic Police Department',
         number: '102',
-        desc: 'Road accidents and high-risk traffic violations',
+        desc: 'Traffic collisions and hazardous driving incidents',
         icon: '👮‍♂️',
-        color: 'from-blue-600 to-indigo-600',
       },
       {
-        title: 'Ambulance & Emergency Care',
+        title: 'Emergency Medical Service',
         number: '103',
-        desc: 'Urgent medical assistance for the injured',
+        desc: 'Urgent medical assistance for injured persons',
         icon: '🚑',
-        color: 'from-rose-600 to-red-600',
       },
       {
-        title: 'Emergency Situations (Rescue)',
+        title: 'Rescue & Fire Service',
         number: '101',
-        desc: 'Fire rescue, entrapment and road clearance',
+        desc: 'Fire hazards, road blockage, and rescue ops',
         icon: '🚒',
-        color: 'from-amber-600 to-orange-600',
       },
       {
-        title: 'National Towing & Evacuation',
+        title: 'National Roadside Assistance',
         number: '+998 71 200 00 00',
-        desc: 'Safe towing service for broken down vehicles',
+        desc: '24/7 towing and vehicle emergency recovery',
         icon: '🚛',
-        color: 'from-purple-600 to-pink-600',
       },
       {
-        title: 'Road Infrastructure Hotline',
+        title: 'Roadway Hotline Support',
         number: '1299',
-        desc: 'Hazardous potholes, road collapses and obstacles',
+        desc: 'Severe potholes, cave-ins, and infrastructure failures',
         icon: '🚧',
-        color: 'from-teal-600 to-emerald-600',
       },
     ],
   };
 
-  const contacts = emergencyContacts[language] || emergencyContacts.uz;
+  const list = emergencyContacts[language] || emergencyContacts.uz;
 
-  const handleCopy = (num: string) => {
+  const copyToClipboard = (num: string) => {
     navigator.clipboard.writeText(num);
     setCopiedNumber(num);
     setTimeout(() => setCopiedNumber(null), 2000);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-      <div className="bg-[#0B101D] border border-red-500/30 rounded-3xl max-w-xl w-full p-6 md:p-8 shadow-2xl shadow-red-500/10 relative overflow-hidden">
-        {/* Glow */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 blur-[100px] pointer-events-none rounded-full" />
-
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-white rounded-3xl border border-gray-200 w-full max-w-xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between pb-5 border-b border-white/10 mb-6">
+        <div className="p-6 bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-red-500/20 border border-red-500/40 rounded-2xl flex items-center justify-center text-2xl animate-pulse">
-              🚨
-            </div>
+            <span className="text-3xl">🚨</span>
             <div>
-              <h2 className="text-2xl font-extrabold text-white tracking-tight">
-                {t('sos_title')}
-              </h2>
-              <p className="text-xs text-slate-400">{t('sos_subtitle')}</p>
+              <h3 className="text-xl font-black">{t('sos_title')}</h3>
+              <p className="text-xs text-red-100">{t('sos_subtitle')}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-9 h-9 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-xl flex items-center justify-center text-base transition-colors"
+            className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white font-bold transition-colors"
           >
             ✕
           </button>
         </div>
 
-        {/* Contacts List */}
-        <div className="space-y-3.5 max-h-[55vh] overflow-y-auto pr-1">
-          {contacts.map((contact, idx) => (
+        {/* Numbers list */}
+        <div className="p-6 space-y-3 max-h-[60vh] overflow-y-auto">
+          {list.map((item, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-2xl bg-slate-900/70 border border-white/5 hover:border-white/15 transition-all flex items-center justify-between gap-3"
+              className="p-4 rounded-2xl bg-gray-50 border border-gray-200 hover:border-gray-300 transition-all flex items-center justify-between gap-4"
             >
               <div className="flex items-center gap-3.5">
-                <div
-                  className={`w-11 h-11 bg-gradient-to-tr ${contact.color} rounded-xl flex items-center justify-center text-xl shadow-md`}
-                >
-                  {contact.icon}
+                <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center text-2xl shrink-0">
+                  {item.icon}
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">{contact.title}</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">{contact.desc}</p>
+                  <h4 className="text-xs font-bold text-[#111827]">{item.title}</h4>
+                  <p className="text-[11px] text-gray-500 leading-snug">{item.desc}</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 <a
-                  href={`tel:${contact.number.replace(/\s+/g, '')}`}
-                  className="bg-red-500 hover:bg-red-600 text-white font-extrabold text-xs px-3.5 py-2.5 rounded-xl transition-transform active:scale-95 shadow-md shadow-red-500/20 flex items-center gap-1.5"
+                  href={`tel:${item.number.replace(/\s+/g, '')}`}
+                  className="bg-[#16C79A] hover:bg-[#12a37d] text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all shadow-sm"
                 >
-                  <span>📞</span>
-                  <span>{contact.number}</span>
+                  {item.number}
                 </a>
                 <button
-                  onClick={() => handleCopy(contact.number)}
-                  title="Copy"
-                  className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-slate-400 hover:text-white text-xs transition-colors"
+                  onClick={() => copyToClipboard(item.number)}
+                  className="p-2 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-700 text-xs transition-colors"
+                  title="Nusxa olish"
                 >
-                  {copiedNumber === contact.number ? '✓' : '📋'}
+                  {copiedNumber === item.number ? '✓' : '📋'}
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* First Aid Road Tip */}
-        <div className="mt-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-start gap-3">
-          <span className="text-xl">⚠️</span>
-          <div className="text-xs text-amber-200/90 leading-relaxed">
-            <span className="font-bold text-amber-300">{t('sos_tip_title')} </span> 
-            {t('sos_tip_desc')}
-          </div>
-        </div>
-
-        {/* Close Button */}
-        <div className="mt-6 pt-4 border-t border-white/10 flex justify-end">
-          <button
-            onClick={onClose}
-            className="w-full bg-white/5 hover:bg-white/10 text-white py-3 rounded-xl font-semibold text-sm transition-all border border-white/10"
-          >
-            {t('sos_close')}
-          </button>
+        {/* Footer info */}
+        <div className="p-4 bg-gray-100 border-t border-gray-200 text-center text-[11px] text-gray-500">
+          Favqulodda vaziyatlarda 102 va 103 raqamlari barcha mobil operatorlar uchun bepul ishlaydi.
         </div>
       </div>
     </div>

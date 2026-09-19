@@ -11,12 +11,14 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenSos }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [bannerVisible, setBannerVisible] = useState(true);
   const { language, setLanguage, t } = useLanguage();
   const pathname = usePathname();
 
   const navLinks = [
     { href: '/', label: t('nav_home') },
     { href: '/map', label: t('nav_map') },
+    { href: '/news', label: t('nav_news') },
     { href: '/statistics', label: t('nav_stats') },
     { href: '/about', label: t('nav_about') },
   ];
@@ -28,158 +30,205 @@ export default function Navbar({ onOpenSos }: NavbarProps) {
   ];
 
   return (
-    <nav className="bg-[#090D16]/80 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 bg-gradient-to-tr from-purple-600 via-pink-500 to-rose-400 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25 group-hover:scale-105 transition-transform duration-300 ring-1 ring-white/20">
-              <span className="text-2xl">🛡️</span>
-            </div>
-            <div>
-              <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-purple-300 transition-colors block leading-tight">
-                Road Safety <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">AI</span>
-              </span>
-              <span className="text-[10px] text-slate-400 font-medium tracking-wider uppercase block">
-                {t('sub_brand')}
-              </span>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-7">
-            <div className="flex items-center gap-6 text-sm font-semibold">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`transition-colors py-1 relative ${
-                      isActive
-                        ? 'text-purple-400 font-bold'
-                        : 'text-slate-300 hover:text-white'
-                    }`}
-                  >
-                    {link.label}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" />
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Action Buttons: Language Switcher + SOS + Report */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* UZ RU EN Language Switcher */}
-            <div className="bg-slate-950/80 border border-white/10 rounded-xl p-1 flex items-center text-xs font-bold text-slate-400">
-              {langs.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => setLanguage(l.code)}
-                  className={`px-3 py-1 rounded-lg transition-all ${
-                    language === l.code
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md shadow-purple-500/20'
-                      : 'hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  {l.label}
-                </button>
-              ))}
-            </div>
-
-            {/* SOS Button */}
-            {onOpenSos && (
-              <button
-                onClick={onOpenSos}
-                className="bg-red-500/15 hover:bg-red-500/25 text-red-400 border border-red-500/30 px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
-              >
-                <span>🚨</span>
-                <span>{t('nav_sos')}</span>
-              </button>
-            )}
-
-            {/* Direct Map CTA */}
+    <header className="sticky top-0 z-50 w-full transition-all">
+      {/* iCORP-Style Top Announcement Banner */}
+      {bannerVisible && (
+        <div className="bg-gradient-to-r from-[#0E9F79] via-[#16C79A] to-[#00B090] text-white text-xs font-semibold px-4 py-2 flex items-center justify-between shadow-sm">
+          <div className="max-w-7xl mx-auto flex items-center justify-center gap-3 w-full text-center">
+            <span className="hidden sm:inline-block bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider">
+              24/7 Monitoring
+            </span>
+            <span className="truncate">
+              ⚡ O&apos;zbekiston Milliy Yo&apos;l Xavfsizligi AI Tizimi — Nosozliklarni sun&apos;iy intellekt orqali aniqlash va tezkor bartaraf etish
+            </span>
             <Link
               href="/map"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md shadow-purple-500/20 active:scale-95 flex items-center gap-1.5"
+              className="hidden md:inline-flex items-center gap-1 bg-white text-[#0E9F79] px-3 py-1 rounded-full text-[11px] font-bold hover:bg-gray-100 transition-colors shrink-0 shadow-sm"
             >
-              <span>{t('nav_report')}</span>
+              Ariza qoldirish →
             </Link>
           </div>
+          <button
+            onClick={() => setBannerVisible(false)}
+            className="text-white/80 hover:text-white p-1 text-sm font-bold leading-none ml-2 transition-opacity"
+            aria-label="Yopish"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
-          {/* Mobile Menu Toggle Button */}
-          <div className="flex items-center gap-2 lg:hidden">
-            {/* Mobile Language Switcher */}
-            <div className="flex items-center gap-0.5 bg-slate-950/80 border border-white/10 rounded-lg p-0.5 text-xs font-bold">
-              {langs.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => setLanguage(l.code)}
-                  className={`px-1.5 py-1 rounded-md text-[11px] ${
-                    language === l.code ? 'bg-purple-600 text-white' : 'text-slate-400'
-                  }`}
-                >
-                  {l.label}
-                </button>
-              ))}
+      {/* Main Crisp White Navbar */}
+      <nav className="bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-[0_2px_15px_rgba(0,0,0,0.04)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo in iCORP tech style */}
+            <Link href="/" className="flex items-center gap-3.5 group">
+              <div className="w-11 h-11 bg-gradient-to-br from-[#111827] to-[#1F2937] border-2 border-[#16C79A] rounded-xl flex items-center justify-center shadow-md shadow-teal-500/10 group-hover:scale-105 transition-transform duration-300">
+                <span className="text-white font-black text-lg tracking-wider">RS</span>
+              </div>
+              <div>
+                <div className="text-lg font-black tracking-tight text-[#111827] group-hover:text-[#16C79A] transition-colors leading-tight uppercase">
+                  ROAD SAFETY <span className="text-[#16C79A]">AI</span>
+                </div>
+                <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#16C79A] inline-block animate-pulse"></span>
+                  {t('sub_brand')}
+                </div>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex items-center gap-8">
+              <div className="flex items-center gap-7 text-xs font-bold uppercase tracking-wider">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`transition-colors py-2 relative ${
+                        isActive
+                          ? 'text-[#16C79A] font-extrabold'
+                          : 'text-[#374151] hover:text-[#16C79A]'
+                      }`}
+                    >
+                      {link.label}
+                      {isActive && (
+                        <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#16C79A] rounded-full" />
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
 
-            {onOpenSos && (
-              <button
-                onClick={onOpenSos}
-                className="bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-1.5 rounded-lg text-xs font-bold"
+            {/* Action Items: Contact, Languages, SOS, and Teal Pill CTA */}
+            <div className="hidden md:flex items-center gap-3.5">
+              {/* Phone Helpline */}
+              <a
+                href="tel:102"
+                className="hidden xl:flex items-center gap-2 text-xs font-bold text-gray-700 hover:text-[#16C79A] px-3 py-1.5 rounded-full border border-gray-200 hover:border-[#16C79A] transition-all bg-gray-50"
               >
-                🚨 SOS
-              </button>
-            )}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-colors"
-              aria-label="Menyu"
-            >
-              <span className="text-base">{mobileMenuOpen ? '✕' : '☰'}</span>
-            </button>
-          </div>
-        </div>
+                <span className="text-sm">📞</span>
+                <span>102 / Qaynoq Liniya</span>
+              </a>
 
-        {/* Mobile Menu Dropdown */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden py-5 border-t border-white/10 space-y-4 animate-in slide-in-from-top-2 duration-200">
-            <div className="flex flex-col gap-2 text-base font-medium">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`px-3 py-2 rounded-xl transition-colors ${
-                      isActive
-                        ? 'bg-purple-600/20 text-purple-400 border border-purple-500/30 font-bold'
-                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
+              {/* Language Switcher Pill */}
+              <div className="bg-gray-100 p-1 rounded-full flex items-center text-xs font-bold text-gray-600 border border-gray-200/80">
+                {langs.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => setLanguage(l.code)}
+                    className={`px-3 py-1 rounded-full transition-all text-[11px] font-bold ${
+                      language === l.code
+                        ? 'bg-[#16C79A] text-white shadow-sm'
+                        : 'hover:text-[#111827]'
                     }`}
                   >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </div>
+                    {l.label}
+                  </button>
+                ))}
+              </div>
 
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+              {/* SOS Emergency Button */}
+              {onOpenSos && (
+                <button
+                  onClick={onOpenSos}
+                  className="bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-sm"
+                >
+                  <span>🚨</span>
+                  <span>{t('nav_sos')}</span>
+                </button>
+              )}
+
+              {/* iCORP Style Solid Teal Pill Button */}
               <Link
                 href="/map"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2.5 rounded-xl text-xs font-bold"
+                className="bg-[#16C79A] hover:bg-[#12a37d] text-white px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-md shadow-teal-500/20 active:scale-95 flex items-center gap-2 tracking-wide uppercase"
               >
-                {t('nav_report')}
+                <span>+ {t('nav_report')}</span>
               </Link>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center gap-2 lg:hidden">
+              {/* Mobile Language Switcher */}
+              <div className="flex items-center bg-gray-100 p-0.5 rounded-full text-xs font-bold border border-gray-200">
+                {langs.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => setLanguage(l.code)}
+                    className={`px-2 py-0.5 rounded-full text-[10px] ${
+                      language === l.code ? 'bg-[#16C79A] text-white font-bold' : 'text-gray-600'
+                    }`}
+                  >
+                    {l.label}
+                  </button>
+                ))}
+              </div>
+
+              {onOpenSos && (
+                <button
+                  onClick={onOpenSos}
+                  className="bg-red-50 text-red-600 border border-red-200 px-2.5 py-1.5 rounded-full text-xs font-bold"
+                >
+                  🚨 SOS
+                </button>
+              )}
+
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 bg-gray-100 border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-200 transition-colors"
+                aria-label="Menyu"
+              >
+                <span className="text-base font-bold">{mobileMenuOpen ? '✕' : '☰'}</span>
+              </button>
+            </div>
           </div>
-        )}
-      </div>
-    </nav>
+
+          {/* Mobile Dropdown Menu */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden py-5 border-t border-gray-200 space-y-4 animate-in slide-in-from-top-2 duration-200 bg-white">
+              <div className="flex flex-col gap-1 text-sm font-semibold">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`px-4 py-2.5 rounded-xl transition-colors ${
+                        isActive
+                          ? 'bg-teal-50 text-[#16C79A] font-bold border border-teal-200'
+                          : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              <div className="pt-3 border-t border-gray-200 flex flex-col gap-2">
+                <a
+                  href="tel:102"
+                  className="text-center py-2 text-xs font-bold text-gray-700 bg-gray-50 rounded-xl border border-gray-200"
+                >
+                  📞 102 — Tezkor Liniya
+                </a>
+                <Link
+                  href="/map"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center bg-[#16C79A] text-white px-4 py-3 rounded-full text-xs font-bold uppercase tracking-wider shadow-md shadow-teal-500/20"
+                >
+                  + {t('nav_report')}
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+    </header>
   );
 }

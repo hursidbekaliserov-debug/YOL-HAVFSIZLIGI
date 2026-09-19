@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import type { Issue } from '../../components/Map';
-import Link from 'next/link';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -46,7 +46,7 @@ export default function MapPage() {
           videoRef.current?.play().catch((e) => console.error('Play error:', e));
         };
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Kameraga kirishda xato:', err);
       setCameraError('Kamerani ochib bo\'lmadi. Ruxsat berilganini yoki kamera mavjudligini tekshiring.');
     }
@@ -100,77 +100,88 @@ export default function MapPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#090D16] text-slate-100 relative overflow-hidden font-sans selection:bg-purple-500 selection:text-white">
-      {/* Background Glows */}
-      <div className="absolute top-0 left-1/3 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/15 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute top-[600px] -right-[100px] w-[500px] h-[500px] bg-blue-600/10 blur-[150px] pointer-events-none rounded-full" />
-
-      {/* Navigation Header */}
+    <main className="min-h-screen bg-[#F8F9FA] text-[#1A1D20] font-sans selection:bg-[#16C79A] selection:text-white relative">
+      {/* Universal Sticky Navbar */}
       <Navbar onOpenSos={() => setIsSosOpen(true)} />
 
       {/* Main Map Container */}
-      <div className="max-w-7xl mx-auto px-6 py-12 relative z-10">
-        <div className="mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            Jonli monitoring (Real-time)
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+        <div className="mb-10 text-center sm:text-left">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-teal-50 border border-teal-200 rounded-full text-[#0E9F79] text-xs font-bold uppercase tracking-wider mb-3">
+            <span className="w-2 h-2 rounded-full bg-[#16C79A] animate-pulse"></span>
+            <span>● JONLI MONITORING VA RADAR</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2">
-            Interaktiv xavfsizlik xaritasi
+          <h1 className="text-3xl sm:text-5xl font-black text-[#111827] tracking-tight mb-2">
+            Interaktiv Xavfsizlik Xaritasi
           </h1>
-          <p className="text-slate-400 text-base max-w-xl">
-            Yo'l infratuzilmasidagi muammolarni real vaqt rejimida aniqlash va vizual tahlil qilish.
+          <p className="text-gray-600 text-sm sm:text-base max-w-xl">
+            Yo&apos;l infratuzilmasidagi nosozliklarni real vaqt rejimida kuzatish, tahlil qilish va yangi muammolarni yuborish.
           </p>
         </div>
 
-        <div className="bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden mb-8 shadow-2xl shadow-black/50">
-          <div className="p-6 md:p-8 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        {/* Map Card */}
+        <div className="bg-white rounded-3xl border border-gray-200/90 overflow-hidden mb-8 shadow-xl shadow-gray-200/50">
+          <div className="p-6 md:p-8 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">AI Aniqlash Tizimi</h2>
-              <p className="text-slate-400 text-sm mt-1">Jonli monitoring va muammolarni tezkor yuborish</p>
+              <h2 className="text-xl font-black text-[#111827] tracking-tight">O&apos;zbekiston Yo&apos;l Holati Geoportali</h2>
+              <p className="text-gray-500 text-xs mt-0.5">Xaritadagi nuqtalarni bosing yoki yangi muammo qo&apos;shing</p>
             </div>
             <button
               onClick={() => setShowReportModal(true)}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-6 py-3.5 rounded-xl font-semibold transition-all shadow-lg shadow-purple-500/25 active:scale-95 text-sm"
+              className="bg-[#16C79A] hover:bg-[#12a37d] text-white px-6 py-3 rounded-full font-bold transition-all shadow-md shadow-teal-500/20 active:scale-95 text-xs uppercase tracking-wider flex items-center justify-center gap-2"
             >
-              + Muammo haqida xabar berish
+              <span>+ Muammo haqida xabar berish</span>
             </button>
           </div>
-          <div className="h-[600px] relative w-full bg-slate-950">
+          <div className="h-[600px] relative w-full bg-gray-100">
             <Map selectedIssue={selectedIssue} setSelectedIssue={setSelectedIssue} />
           </div>
         </div>
 
+        {/* Selected Issue Card */}
         {selectedIssue && (
-          <div className="bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-white/10 p-6 md:p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="bg-white rounded-3xl border border-gray-200/90 p-6 md:p-8 shadow-xl shadow-gray-200/40 animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-full">
-                Tanlangan muammo
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0E9F79] bg-teal-50 border border-teal-200 px-3 py-1 rounded-full">
+                ● Tanlangan Yo&apos;l Muammosi
               </span>
               <button 
                 onClick={() => setSelectedIssue(null)}
-                className="text-slate-400 hover:text-white text-sm"
+                className="text-gray-400 hover:text-gray-800 text-sm font-bold"
               >
                 ✕ Yopish
               </button>
             </div>
             <div className="grid md:grid-cols-2 gap-6 items-center">
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">{selectedIssue.description}</h3>
-                <div className="flex gap-4 text-xs font-semibold text-slate-400">
-                  <span className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg">
-                    Holati: <span className="text-emerald-400">{selectedIssue.status}</span>
+                <h3 className="text-xl font-black text-[#111827] mb-2">{selectedIssue.description}</h3>
+                <div className="flex flex-wrap gap-3 text-xs font-semibold text-gray-600">
+                  <span className="bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-xl">
+                    Holati: <span className="text-[#0E9F79] font-bold">{selectedIssue.status}</span>
                   </span>
-                  <span className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg">
-                    Ovozlar: <span className="text-purple-400">{selectedIssue.votes}</span>
+                  <span className="bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-xl">
+                    Ovozlar: <span className="text-[#16C79A] font-bold">{selectedIssue.votes}</span>
+                  </span>
+                  <span className="bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-xl">
+                    Sana: <span className="text-gray-700">{selectedIssue.reportedDate}</span>
                   </span>
                 </div>
               </div>
               <div className="flex gap-3">
-                <button className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white py-3 rounded-xl font-semibold transition-all shadow-lg shadow-purple-500/20 active:scale-95 text-sm">
-                  Qo'llab-quvvatlash
+                <button
+                  onClick={() => alert('Ovozingiz qabul qilindi! Rahmat.')}
+                  className="flex-1 bg-[#16C79A] hover:bg-[#12a37d] text-white py-3 rounded-full font-bold transition-all shadow-md shadow-teal-500/20 active:scale-95 text-xs uppercase tracking-wider"
+                >
+                  👍 Qo&apos;llab-quvvatlash
                 </button>
-                <button className="flex-1 bg-white/5 hover:bg-white/10 text-white py-3 rounded-xl font-semibold transition-all border border-white/10 text-sm">
-                  Ulashish
+                <button
+                  onClick={() => {
+                    navigator.clipboard?.writeText(window.location.href);
+                    alert('Havola nusxalandi!');
+                  }}
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 py-3 rounded-full font-bold transition-all border border-gray-300 text-xs uppercase tracking-wider"
+                >
+                  🔗 Ulashish
                 </button>
               </div>
             </div>
@@ -180,19 +191,19 @@ export default function MapPage() {
 
       {/* Modal Dialog */}
       {showReportModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-          <div className="bg-[#0D1322] rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-white/10">
-            <div className="p-6 md:p-8 border-b border-white/10 flex items-center justify-between">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-gray-200">
+            <div className="p-6 md:p-8 border-b border-gray-200 flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-extrabold text-white tracking-tight">Muammo haqida xabar bering</h2>
-                <p className="text-slate-400 text-xs mt-1">AI xaritasiga kiritish uchun rasm yuboring</p>
+                <h2 className="text-2xl font-black text-[#111827] tracking-tight">Muammo Haqida Xabar Bering</h2>
+                <p className="text-gray-500 text-xs mt-0.5">AI xaritasiga kiritish uchun fotosurat va manzilni yuboring</p>
               </div>
               <button
                 onClick={() => {
                   stopCamera();
                   setShowReportModal(false);
                 }}
-                className="w-9 h-9 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+                className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-600 transition-colors font-bold text-sm"
               >
                 ✕
               </button>
@@ -203,50 +214,52 @@ export default function MapPage() {
                 e.preventDefault();
                 stopCamera();
                 setShowReportModal(false);
+                alert('Arizangiz muvaffaqiyatli qabul qilindi! AI tekshiruvidan so\'ng xaritaga qo\'shiladi.');
               }}
               className="p-6 md:p-8 space-y-5"
             >
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
                   Muammo turi
                 </label>
-                <select className="w-full bg-slate-900 border border-white/10 rounded-xl p-3.5 text-white focus:outline-none focus:border-purple-500 transition-colors text-sm">
-                  <option className="bg-[#090D16]">Yo'l o'ng'irligi (Chuqurchalar)</option>
-                  <option className="bg-[#090D16]">Svetofor ishida xatolik</option>
-                  <option className="bg-[#090D16]">Yo'l belgisi yo'qligi</option>
-                  <option className="bg-[#090D16]">Yoritilmagan piyodalar o'tish joyi</option>
-                  <option className="bg-[#090D16]">Boshqa</option>
+                <select className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-3.5 text-[#111827] focus:outline-none focus:border-[#16C79A] transition-colors text-sm">
+                  <option>Yo&apos;l qoplamasidagi chuqurliklar (Potholes)</option>
+                  <option>Nosoz svetofor yoki datchik</option>
+                  <option>Yo&apos;l belgisi yo&apos;qligi yoki shikastlanganligi</option>
+                  <option>Yoritilmagan piyodalar o&apos;tish joyi</option>
+                  <option>Boshqa xavfli to&apos;siq</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
-                  Tavsif (Batafsil)
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+                  Tavsif va Aniq Manzil
                 </label>
                 <textarea
-                  className="w-full bg-slate-900 border border-white/10 rounded-xl p-3.5 h-28 text-white focus:outline-none focus:border-purple-500 transition-colors text-sm resize-none placeholder:text-slate-600"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-3.5 h-28 text-[#111827] focus:outline-none focus:border-[#16C79A] transition-colors text-sm resize-none placeholder:text-gray-400"
                   placeholder="Muammo joylashuvi va tafsilotlarini yozing..."
+                  required
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
-                  Rasm dalil
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+                  Fotosurat (Dalil)
                 </label>
 
                 {capturedImage ? (
-                  <div className="relative rounded-xl overflow-hidden border border-white/10 bg-slate-900">
-                    <img src={capturedImage} alt="Olingan rasm" className="w-full h-56 object-cover" />
+                  <div className="relative rounded-2xl overflow-hidden border border-gray-200 bg-gray-100">
+                    <img src={capturedImage} alt="Olingan rasm" className="w-full h-52 object-cover" />
                     <button
                       type="button"
                       onClick={() => setCapturedImage(null)}
-                      className="absolute top-2 right-2 w-8 h-8 bg-red-500/80 hover:bg-red-600 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors"
+                      className="absolute top-2 right-2 w-8 h-8 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white transition-colors text-xs font-bold"
                     >
                       ✕
                     </button>
                   </div>
                 ) : showCamera ? (
-                  <div className="relative bg-black rounded-xl overflow-hidden border border-white/10 h-64 flex items-center justify-center">
+                  <div className="relative bg-black rounded-2xl overflow-hidden border border-gray-200 h-64 flex items-center justify-center">
                     {cameraError ? (
                       <div className="p-4 text-center text-red-400 text-xs">{cameraError}</div>
                     ) : (
@@ -258,13 +271,13 @@ export default function MapPage() {
                         className="w-full h-full object-cover"
                       />
                     )}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
                       <div className="flex gap-2">
                         {!cameraError && (
                           <button
                             type="button"
                             onClick={capturePhoto}
-                            className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2.5 rounded-lg font-semibold text-sm active:scale-95 transition-transform"
+                            className="flex-1 bg-[#16C79A] text-white py-2.5 rounded-full font-bold text-xs uppercase tracking-wider active:scale-95 transition-transform"
                           >
                             📷 Rasmga olish
                           </button>
@@ -272,7 +285,7 @@ export default function MapPage() {
                         <button
                           type="button"
                           onClick={stopCamera}
-                          className="w-10 h-10 bg-white/10 text-white rounded-lg flex items-center justify-center text-sm hover:bg-white/20 transition-colors"
+                          className="w-10 h-10 bg-white/20 text-white rounded-full flex items-center justify-center text-sm hover:bg-white/30 transition-colors"
                         >
                           ✕
                         </button>
@@ -284,11 +297,11 @@ export default function MapPage() {
                     <button
                       type="button"
                       onClick={startCamera}
-                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white py-3 rounded-xl font-semibold transition-all shadow-lg shadow-purple-500/25 text-sm flex items-center justify-center gap-2"
+                      className="w-full bg-[#16C79A] hover:bg-[#12a37d] text-white py-3 rounded-full font-bold transition-all shadow-md shadow-teal-500/20 text-xs uppercase tracking-wider flex items-center justify-center gap-2"
                     >
                       📷 Kamerani ochish
                     </button>
-                    <div className="border-2 border-dashed border-white/10 hover:border-purple-500/50 rounded-2xl p-4 text-center transition-colors bg-slate-900/50 cursor-pointer group">
+                    <div className="border-2 border-dashed border-gray-300 hover:border-[#16C79A] rounded-2xl p-4 text-center transition-colors bg-gray-50 cursor-pointer group">
                       <input 
                         type="file" 
                         accept="image/*" 
@@ -297,9 +310,9 @@ export default function MapPage() {
                         onChange={handleFileUpload} 
                       />
                       <label htmlFor="image-upload" className="cursor-pointer block">
-                        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">📁</div>
-                        <p className="text-xs font-semibold text-slate-300">Yoki qurilmadan yuklang</p>
-                        <p className="text-[10px] text-slate-500 mt-1">PNG, JPG yoki WEBP (MAKS. 10MB)</p>
+                        <div className="text-2xl mb-1 group-hover:scale-110 transition-transform">📁</div>
+                        <p className="text-xs font-bold text-gray-700">Yoki fayllardan yuklang</p>
+                        <p className="text-[10px] text-gray-400 mt-0.5">PNG, JPG yoki WEBP (MAKS. 10MB)</p>
                       </label>
                     </div>
                   </div>
@@ -310,7 +323,7 @@ export default function MapPage() {
               <div className="flex gap-3 pt-2">
                 <button
                   type="submit"
-                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white py-3.5 rounded-xl font-semibold transition-all shadow-lg shadow-purple-500/25 active:scale-95 text-sm"
+                  className="flex-1 bg-[#16C79A] hover:bg-[#12a37d] text-white py-3.5 rounded-full font-bold transition-all shadow-md shadow-teal-500/20 active:scale-95 text-xs uppercase tracking-wider"
                 >
                   Yuborish
                 </button>
@@ -320,7 +333,7 @@ export default function MapPage() {
                     stopCamera();
                     setShowReportModal(false);
                   }}
-                  className="flex-1 bg-white/5 hover:bg-white/10 text-white py-3.5 rounded-xl font-semibold transition-all border border-white/10 text-sm"
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3.5 rounded-full font-bold transition-all border border-gray-300 text-xs uppercase tracking-wider"
                 >
                   Bekor qilish
                 </button>

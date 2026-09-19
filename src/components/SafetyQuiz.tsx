@@ -60,81 +60,81 @@ export default function SafetyQuiz() {
     ru: [
       {
         id: 1,
-        question: 'Какова максимально разрешенная скорость в жилых зонах и дворовых территориях?',
+        question: 'Какова максимально разрешенная скорость в жилых зонах?',
         options: ['20 км/ч', '30 км/ч', '40 км/ч', '50 км/ч'],
         correct: 0,
-        explanation: 'Согласно ПДД, максимальная скорость в жилых зонах и дворах составляет 20 км/ч.',
+        explanation: 'Согласно ПДД Узбекистана, в жилых зонах и дворовых территориях скорость ограничена до 20 км/ч.',
       },
       {
         id: 2,
-        question: 'Какие световые приборы обязательны в условиях дождя или тумана?',
+        question: 'Какие световые приборы обязательны в условиях дождя или тумана днем?',
         options: ['Только габариты', 'Ближний свет фар или противотуманные фары', 'Аварийная сигнализация', 'Дальний свет фар'],
         correct: 1,
-        explanation: 'В условиях недостаточной видимости необходимо включать ближний свет фар или противотуманные фары.',
+        explanation: 'В условиях недостаточной видимости необходимо включать ближний свет фар или противотуманки.',
       },
       {
         id: 3,
-        question: 'Что делать, если перед пешеходным переходом притормозил автомобиль в соседней полосе?',
-        options: ['Посигналить и проехать', 'Также снизить скорость или остановиться, убедившись в отсутствии пешехода', 'Увеличить скорость', 'Проехать без изменений'],
+        question: 'Если перед пешеходным переходом остановился автомобиль в соседнем ряду, что вы должны сделать?',
+        options: ['Подать сигнал и продолжить', 'Также остановиться и убедиться в отсутствии пешехода', 'Увеличить скорость', 'Продолжать движение без остановки'],
         correct: 1,
-        explanation: 'Водитель обязан снизить скорость или остановиться, чтобы убедиться в отсутствии пешеходов.',
+        explanation: 'Если автомобиль снизил скорость или остановился, водители соседних рядов обязаны также остановиться.',
       },
       {
         id: 4,
-        question: 'О чем предупреждает мигающий желтый сигнал светофора?',
-        options: ['Движение запрещено', 'Перекресток нерегулируемый, движение разрешено с осторожностью', 'Нужно резко ускориться', 'Поворот только направо'],
+        question: 'Что означает желтый мигающий сигнал светофора?',
+        options: ['Движение запрещено', 'Перекресток нерегулируемый, разрешено движение с осторожностью', 'Требуется ускорение', 'Поворот только направо'],
         correct: 1,
         explanation: 'Желтый мигающий сигнал информирует о нерегулируемом перекрестке или пешеходном переходе.',
       },
       {
         id: 5,
-        question: 'Для кого обязательно пристегивание ремнем безопасности?',
-        options: ['Только для водителя', 'Для водителя и переднего пассажира', 'Для водителя и всех пассажиров (если предусмотрено конструкцией)', 'Только для детей'],
+        question: 'Для кого обязательно пристегиваться ремнем безопасности?',
+        options: ['Только водитель', 'Водитель и передний пассажир', 'Все находящиеся в авто (при наличии ремней)', 'Только дети'],
         correct: 2,
-        explanation: 'Все находящиеся в автомобиле лица обязаны быть пристегнуты при наличии ремней безопасности.',
+        explanation: 'Все пассажиры и водитель обязаны быть пристегнуты, если ремни предусмотрены конструкцией.',
       },
     ],
     en: [
       {
         id: 1,
-        question: 'What is the maximum legal speed in residential areas and courtyards?',
+        question: 'What is the maximum speed limit in residential zones?',
         options: ['20 km/h', '30 km/h', '40 km/h', '50 km/h'],
         correct: 0,
-        explanation: 'According to traffic regulations, the maximum speed in residential zones is 20 km/h.',
+        explanation: 'According to traffic regulations, speed in residential zones is restricted to 20 km/h.',
       },
       {
         id: 2,
-        question: 'Which lights must be turned on during rain or foggy conditions?',
-        options: ['Parking lights only', 'Low-beam headlights or front fog lights', 'Hazard warning flashers', 'High-beam headlights'],
+        question: 'Which lights must be on in rainy or foggy daytime conditions?',
+        options: ['Parking lights only', 'Low beam headlights or fog lights', 'Hazard lights', 'High beam headlights'],
         correct: 1,
-        explanation: 'Under poor visibility conditions, low-beam headlights or fog lights are mandatory.',
+        explanation: 'In poor visibility conditions, low beams or fog lights are mandatory.',
       },
       {
         id: 3,
-        question: 'What should you do if a car in the adjacent lane slows down before a crosswalk?',
-        options: ['Honk and accelerate', 'Slow down or stop and make sure no pedestrian is crossing', 'Speed up and pass', 'Ignore it'],
+        question: 'If a car in an adjacent lane stops before a crosswalk, what must you do?',
+        options: ['Honk and proceed', 'Also stop and ensure no pedestrian is crossing', 'Accelerate', 'Ignore and continue'],
         correct: 1,
-        explanation: 'Drivers must yield and stop to verify that no pedestrians are crossing the road.',
+        explanation: 'You must also come to a stop and make sure the pedestrian crossing is clear.',
       },
       {
         id: 4,
-        question: 'What does a flashing yellow traffic signal indicate?',
-        options: ['Traffic is prohibited', 'Unregulated intersection, proceed with caution', 'Accelerate immediately', 'Right turn only'],
+        question: 'What does a flashing yellow traffic light indicate?',
+        options: ['Traffic prohibited', 'Unregulated junction, proceed with caution', 'Accelerate fast', 'Turn right only'],
         correct: 1,
-        explanation: 'A flashing yellow light warns that the intersection is uncontrolled, requiring extra vigilance.',
+        explanation: 'A flashing yellow light warns of an uncontrolled intersection or pedestrian crossing.',
       },
       {
         id: 5,
         question: 'Who must wear seatbelts in a passenger vehicle?',
-        options: ['Only the driver', 'Driver and front passenger only', 'Driver and all passengers (if equipped)', 'Only children'],
+        options: ['Driver only', 'Driver and front passenger', 'All passengers if belts are equipped', 'Children only'],
         correct: 2,
-        explanation: 'Seatbelts must be worn by both the driver and all passengers in seats equipped with belts.',
+        explanation: 'All occupants in vehicles equipped with seatbelts must buckle up.',
       },
     ],
   };
 
-  const questions = quizData[language] || quizData.uz;
-  const q = questions[currentIdx] || questions[0];
+  const list = quizData[language] || quizData.uz;
+  const q = list[currentIdx];
 
   const handleSelect = (idx: number) => {
     if (isAnswered) return;
@@ -146,7 +146,7 @@ export default function SafetyQuiz() {
   };
 
   const handleNext = () => {
-    if (currentIdx < questions.length - 1) {
+    if (currentIdx + 1 < list.length) {
       setCurrentIdx((c) => c + 1);
       setSelectedOpt(null);
       setIsAnswered(false);
@@ -164,40 +164,58 @@ export default function SafetyQuiz() {
   };
 
   return (
-    <div className="bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-white/10 p-6 md:p-8 shadow-2xl">
-      <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+    <div className="bg-white rounded-3xl border border-gray-200/90 p-6 md:p-8 shadow-xl shadow-gray-100/80">
+      <div className="flex items-center justify-between pb-5 border-b border-gray-200 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-pink-500/10 border border-pink-500/20 rounded-lg text-pink-400 text-xs font-semibold uppercase tracking-wider mb-2">
-            {t('quiz_badge')}
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 border border-teal-200 rounded-full text-[#0E9F79] text-xs font-bold uppercase tracking-wider mb-2">
+            ● {t('quiz_badge')}
           </div>
-          <h3 className="text-2xl font-extrabold text-white tracking-tight">
+          <h3 className="text-2xl font-black text-[#111827] tracking-tight">
             {t('quiz_title')}
           </h3>
+          <p className="text-gray-500 text-xs mt-1">
+            {t('quiz_subtitle')}
+          </p>
         </div>
         {!completed && (
-          <div className="text-xs font-bold text-slate-400 bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
-            {t('quiz_q_label')} {currentIdx + 1} / {questions.length}
-          </div>
+          <span className="text-xs font-bold text-[#0E9F79] bg-teal-50 border border-teal-200 px-3 py-1.5 rounded-full">
+            {currentIdx + 1} / {list.length} {t('quiz_counter')}
+          </span>
         )}
       </div>
 
-      {!completed ? (
-        <div className="space-y-6">
-          <div className="text-lg md:text-xl font-bold text-white leading-relaxed">
-            {q.question}
+      {completed ? (
+        <div className="text-center py-10 space-y-4">
+          <div className="w-20 h-20 rounded-full bg-teal-50 border-2 border-[#16C79A] text-4xl flex items-center justify-center mx-auto shadow-md">
+            🏆
           </div>
+          <h4 className="text-2xl font-black text-[#111827]">
+            {score === list.length ? 'A\'lo natija! Mukammal bilim!' : 'Test yakunlandi!'}
+          </h4>
+          <p className="text-sm text-gray-600 max-w-md mx-auto">
+            Siz {list.length} ta savoldan <span className="font-bold text-[#16C79A] text-lg">{score}</span> tasiga to&apos;g&apos;ri javob berdingiz.
+          </p>
+          <button
+            onClick={handleRestart}
+            className="bg-[#16C79A] hover:bg-[#12a37d] text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-teal-500/20 active:scale-95"
+          >
+            Qaytadan topshirish
+          </button>
+        </div>
+      ) : (
+        <div className="space-y-6">
+          <h4 className="text-lg font-bold text-[#111827]">
+            {q.id}. {q.question}
+          </h4>
 
-          <div className="grid gap-3">
+          <div className="grid sm:grid-cols-2 gap-3">
             {q.options.map((opt, idx) => {
-              let optStyle = 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10';
-
+              let optStyle = 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100';
               if (isAnswered) {
                 if (idx === q.correct) {
-                  optStyle = 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold';
+                  optStyle = 'bg-teal-50 border-[#16C79A] text-[#0E9F79] font-bold';
                 } else if (idx === selectedOpt) {
-                  optStyle = 'bg-red-500/20 border-red-500 text-red-300';
-                } else {
-                  optStyle = 'bg-white/5 border-white/5 text-slate-500 opacity-60';
+                  optStyle = 'bg-rose-50 border-rose-400 text-rose-600 font-bold';
                 }
               }
 
@@ -206,62 +224,34 @@ export default function SafetyQuiz() {
                   key={idx}
                   onClick={() => handleSelect(idx)}
                   disabled={isAnswered}
-                  className={`p-4 rounded-2xl border text-left text-sm transition-all flex items-center justify-between ${optStyle}`}
+                  className={`p-4 rounded-2xl border text-left text-xs transition-all flex items-start gap-3 ${optStyle}`}
                 >
-                  <span>{opt}</span>
-                  {isAnswered && idx === q.correct && <span className="text-emerald-400 font-bold">✓</span>}
-                  {isAnswered && idx === selectedOpt && idx !== q.correct && (
-                    <span className="text-red-400 font-bold">✕</span>
-                  )}
+                  <span className="w-6 h-6 rounded-full bg-white border border-gray-300 flex items-center justify-center font-bold shrink-0 text-gray-700 shadow-sm">
+                    {String.fromCharCode(65 + idx)}
+                  </span>
+                  <span className="mt-0.5 leading-relaxed">{opt}</span>
                 </button>
               );
             })}
           </div>
 
           {isAnswered && (
-            <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-xs text-purple-200 animate-in fade-in duration-200">
-              <strong className="text-purple-300 block mb-1">
-                {language === 'ru' ? 'Обоснование правила:' : language === 'en' ? 'Traffic Rule Basis:' : 'Qoidaga asos:'}
-              </strong>
+            <div className="p-4 rounded-2xl bg-teal-50/70 border border-teal-200 text-xs text-gray-700 leading-relaxed animate-in fade-in">
+              <span className="font-bold text-[#0E9F79] block mb-1">Izoh va Qoida:</span>
               {q.explanation}
             </div>
           )}
 
           {isAnswered && (
-            <div className="flex justify-end pt-2">
+            <div className="flex justify-end">
               <button
                 onClick={handleNext}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-purple-500/25 transition-all"
+                className="bg-[#16C79A] hover:bg-[#12a37d] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-teal-500/20 active:scale-95"
               >
-                {currentIdx < questions.length - 1 ? t('quiz_next') : t('quiz_finish')}
+                Keyingi savol →
               </button>
             </div>
           )}
-        </div>
-      ) : (
-        <div className="text-center py-8 space-y-6">
-          <div className="text-6xl animate-bounce">
-            {score >= 4 ? '🏅' : score >= 3 ? '👍' : '⚠️'}
-          </div>
-          <div>
-            <h4 className="text-3xl font-extrabold text-white mb-2">
-              {score >= 4
-                ? (language === 'ru' ? 'Отличный результат! Эксперт дорог' : language === 'en' ? 'Excellent! Expert Driver' : 'Ajoyib natija! Mutaxassis haydovchi')
-                : (language === 'ru' ? 'Хороший результат! Ответственный гражданин' : language === 'en' ? 'Good job! Responsible Citizen' : 'Yaxshi natija! Mas\'uliyatli fuqaro')}
-            </h4>
-            <p className="text-slate-400 text-sm">
-              {questions.length} {t('quiz_score_msg')} <span className="text-purple-400 font-bold text-lg">{score}</span>
-            </p>
-          </div>
-
-          <div>
-            <button
-              onClick={handleRestart}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-purple-500/25 transition-all"
-            >
-              {t('quiz_restart')}
-            </button>
-          </div>
         </div>
       )}
     </div>
